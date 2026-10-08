@@ -21,10 +21,10 @@ def read_clips(path: Path) -> tuple[list[Clip], list[Finding]]:
         if duplicates:
             return [], [Finding(1, "duplicate-column", ", ".join(duplicates))]
         for row_number, record in enumerate(reader, 2):
-            if not any(value for value in record.values() if isinstance(value, str)):
-                continue
             if None in record or any(record.get(name) is None for name in REQUIRED):
                 findings.append(Finding(row_number, "invalid-row", "wrong number of columns"))
+                continue
+            if not any(value for value in record.values() if isinstance(value, str)):
                 continue
             source = record["source"].strip()
             if not source:
