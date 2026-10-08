@@ -2,7 +2,9 @@
 
 Each row places one source range on a single output timeline. The four
 required columns are `source`, `in`, `out`, and `timeline_start`. Column order
-may vary. Extra columns are ignored.
+may vary. Named column headers must be unique; duplicate names produce a
+`duplicate-column` finding instead of silently replacing values. Extra columns
+are ignored.
 
 All times are `HH:MM:SS.mmm` with exactly three millisecond digits. The
 checker uses decimal arithmetic. `in` and `out` are positions in the source;
