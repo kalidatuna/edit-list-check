@@ -20,7 +20,8 @@ def read_clips(path: Path) -> tuple[list[Clip], list[Finding]]:
         duplicates = sorted(name for name, count in Counter(reader.fieldnames).items() if name and count > 1)
         if duplicates:
             return [], [Finding(1, "duplicate-column", ", ".join(duplicates))]
-        for row_number, record in enumerate(reader, 2):
+        for record in reader:
+            row_number = reader.line_num
             if None in record or any(record.get(name) is None for name in REQUIRED):
                 findings.append(Finding(row_number, "invalid-row", "wrong number of columns"))
                 continue

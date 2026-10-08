@@ -13,5 +13,8 @@ transitions, speed changes, audio tracks, and frame-rate conversion are not
 represented. The tool is intended for simple cut lists and preflight checks,
 not as a full EDL interchange format.
 
+Finding `row` values identify physical CSV line numbers. For a quoted multiline
+record, the number is its final line, matching the CSV reader's location.
+
 The [sample list](../examples/edits.csv) references illustrative filenames.
 Run it with `--no-files`, or put those files beneath `--media-root`.
